@@ -93,9 +93,11 @@
     on:dblclick={(e) => onDoubleTap(e, lines)}
     {contenteditable}
   >
-    {#each lines as line}
-      <p>{line}</p>
-    {/each}
+    <p>
+      {#each lines as line}
+        {line}
+      {/each}
+    </p>
   </div>
 {/each}
 
@@ -106,7 +108,6 @@
     position: absolute;
     line-height: 1.1em;
     font-size: 16pt;
-    white-space: nowrap;
     border: 1px solid rgba(0, 0, 0, 0);
     z-index: 11;
   }
@@ -119,7 +120,6 @@
 
   .textBox p {
     display: none;
-    white-space: nowrap;
     letter-spacing: 0.1em;
     line-height: 1.1em;
     margin: 0;
