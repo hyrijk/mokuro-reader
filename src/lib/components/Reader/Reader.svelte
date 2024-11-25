@@ -119,6 +119,7 @@
         return;
       case 'ArrowUp':
       case 'PageUp':
+      case 'KeyK':
         changePage(page - navAmount, true);
         return;
       case 'ArrowRight':
@@ -127,6 +128,7 @@
       case 'ArrowDown':
       case 'PageDown':
       case 'Space':
+      case 'KeyJ':
         changePage(page + navAmount, true);
         return;
       case 'Home':
