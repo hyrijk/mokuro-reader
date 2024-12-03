@@ -43,6 +43,8 @@
   $: fontWeight = $settings.boldFont ? 'bold' : '400';
   $: display = $settings.displayOCR ? 'block' : 'none';
   $: border = $settings.textBoxBorders ? '1px solid red' : 'none';
+  $: isControlPressed = false;
+  $: alwaysShowOCRClass = 'always-show-ocr';
   $: contenteditable = $settings.textEditable;
 
   $: triggerMethod = $settings.ankiConnectSettings.triggerMethod || 'both';
@@ -74,11 +76,13 @@
       onUpdateCard(lines);
     }
   }
+  window.addEventListener('keydown', (e) => isControlPressed = e.metaKey);
+  window.addEventListener('keyup', (e) => isControlPressed = e.metaKey);
 </script>
 
 {#each textBoxes as { fontSize, height, left, lines, top, width, writingMode }, index (`textBox-${index}`)}
   <div
-    class="textBox"
+    class="textBox {isControlPressed ? alwaysShowOCRClass : ''}"
     style:width
     style:height
     style:left
@@ -129,7 +133,8 @@
   }
 
   .textBox:focus p,
-  .textBox:hover p {
+  .textBox:hover p,
+  .textBox.always-show-ocr p {
     display: table;
   }
 </style>
